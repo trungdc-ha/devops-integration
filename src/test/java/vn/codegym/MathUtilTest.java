@@ -1,16 +1,11 @@
 package vn.codegym;
 
-import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.junit.Test;
 import vn.codegym.util.MathUtil;
 
 import static org.junit.Assert.assertEquals;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-class DevopsIntegrationApplicationTests {
+public class MathUtilTest {
     MathUtil util = new MathUtil();
 
     @Test
@@ -27,5 +22,4 @@ class DevopsIntegrationApplicationTests {
     public void test3() {
         assertEquals(util.sum(1, 2), 3);
     }
-
 }
