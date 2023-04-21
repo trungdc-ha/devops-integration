@@ -20,7 +20,7 @@ class DevopsIntegrationApplicationTests {
 
     @Test
     public void test2() {
-        assertEquals(util.sum(2, 1), 3);
+        assertEquals(util.sum(2, 1), 4);
     }
 
     @Test
