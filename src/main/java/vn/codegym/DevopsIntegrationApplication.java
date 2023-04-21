@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class DevopsIntegrationApplication {
     @GetMapping
     public String message(){
-        return "welcome to TrungDC";
+        return "welcome to TrungDC CodeGym";
     }
     public static void main(String[] args) {
         SpringApplication.run(DevopsIntegrationApplication.class, args);
