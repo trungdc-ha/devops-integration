@@ -7,9 +7,6 @@ pipeline {
         DOCKER_IMAGE = "trungdc68/devops-integration"
     }
     stages {
-        environment {
-            DOCKER_TAG = "${GIT_BRANCH.tokenize('/').pop()}-${BUILD_NUMBER}-${GIT_COMMIT.substring(0, 7)}"
-        }
         stage('Build Maven') {
             steps {
                 checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/trungdc-ha/devops-integration.git']])
@@ -17,6 +14,9 @@ pipeline {
             }
         }
         stage('Build docker image') {
+            environment {
+                DOCKER_TAG = "${GIT_BRANCH.tokenize('/').pop()}-${BUILD_NUMBER}-${GIT_COMMIT.substring(0, 7)}"
+            }
             steps {
                 script {
 //                    sh 'docker build -t trungdc68/devops-integration .'
@@ -25,6 +25,9 @@ pipeline {
             }
         }
         stage('Push image to Hub') {
+            environment {
+                DOCKER_TAG = "${GIT_BRANCH.tokenize('/').pop()}-${BUILD_NUMBER}-${GIT_COMMIT.substring(0, 7)}"
+            }
             steps {
                 script {
                     withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
