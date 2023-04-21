@@ -19,8 +19,8 @@ pipeline {
             }
             steps {
                 script {
-                    sh 'docker build -t trungdc68/devops-integration .'
-                    // sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} . "
+//                    sh 'docker build -t trungdc68/devops-integration .'
+                     sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} . "
                 }
             }
         }
