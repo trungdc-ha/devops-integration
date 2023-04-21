@@ -18,9 +18,9 @@ pipeline {
                 sh "mvn test"
             }
         }
-//        stage('Report JUNIT') {
-//            steps([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
-//        }
+        stage('Report JUNIT') {
+            steps([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
+        }
         stage('Build docker image') {
             environment {
                 DOCKER_TAG = "${GIT_BRANCH.tokenize('/').pop()}-${BUILD_NUMBER}-${GIT_COMMIT.substring(0, 7)}"
@@ -44,7 +44,7 @@ pipeline {
 //                    sh 'docker push trungdc68/devops-integration'
                     sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
                 }
-                clean to save disk
+                //clean to save disk
                 sh "docker image rm ${DOCKER_IMAGE}:${DOCKER_TAG}"
             }
         }
