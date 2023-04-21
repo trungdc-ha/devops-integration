@@ -34,7 +34,7 @@ pipeline {
                     sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
                 }
                 //clean to save disk
-                sh "docker image rm ${DOCKER_IMAGE}:${DOCKER_TAG}"
+//                sh "docker image rm ${DOCKER_IMAGE}:${DOCKER_TAG}"
             }
         }
     }
