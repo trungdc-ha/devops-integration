@@ -18,9 +18,9 @@ pipeline {
                 sh "mvn test"
             }
         }
-        stage('Report JUNIT') {
-            steps([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
-        }
+//        stage('Report JUNIT') {
+//            steps([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
+//        }
         stage('Build docker image') {
             environment {
                 DOCKER_TAG = "${GIT_BRANCH.tokenize('/').pop()}-${BUILD_NUMBER}-${GIT_COMMIT.substring(0, 7)}"
