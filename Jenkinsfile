@@ -24,17 +24,19 @@ pipeline {
                 }
             }
         }
-//        stage('Push image to Hub') {
-//            steps {
-//                script {
-//                    withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
-//                        sh 'docker login -u trungdc68 -p ${dockerhubpwd}'
-//                    }
+        stage('Push image to Hub') {
+            steps {
+                script {
+                    withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
+                        sh 'docker login -u trungdc68 -p ${dockerhubpwd}'
+                    }
 //                    sh 'docker push trungdc68/devops-integration'
-//                    // sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
-//                }
-//            }
-//        }
+                    sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                }
+                //clean to save disk
+                sh "docker image rm ${DOCKER_IMAGE}:${DOCKER_TAG}"
+            }
+        }
     }
     post {
         success {
